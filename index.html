@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volt</title>
     <style>
+        
+        .header .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Icon inside the circle (using FontAwesome for example, or custom SVG) */
+        .header .user-icon i {
+            font-size: 20px;
+            color: #333;
+        }
+
+        /* Optional: hover effect */
+        .header .user-icon:hover {
+            background-color: #555;
+        }
+        
         /* Global Styles */
         body {
             background-color: rgb(5, 5, 53);
@@ -27,7 +50,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 1);
+            background-color: rgb(13, 13, 13);
             position: fixed;
             top: 0;
             left: 0;
@@ -39,7 +62,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: black;
+            color: white;
         }
 
         .menu {
@@ -48,7 +71,7 @@
         }
 
         .menu a {
-            color: black;
+            color: white;
             font-weight: bold;
             text-decoration: none;
             margin-left: 20px;
@@ -153,7 +176,8 @@
         }
 
         #send-btn:hover {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(255, 255, 255, 0.7);
+            color: black;
         }
 
         /* Message Styles */
@@ -180,100 +204,28 @@
         }
 
         /* Carousel Styles */
-        .carousel-container {
-            width: 200px;
-            height: 420px; 
-            overflow-x: scroll;
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory; 
-            box-sizing: border-box;
-            background: rgba(0, 0, 0, 0.7); 
-            border-radius: 30px;
-            position: absolute;
-            z-index: 1; 
-            top: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 1140px;
-        }
-        
-
-        .carousel {
+        .images {
+            margin: 100px 0 0 200px;
+            width: 70%;
+            height: 450px;
             display: flex;
-            scroll-behavior: smooth; 
-        }
-
-        .carousel-item {
-            max-width: 250px; 
-            flex: 0 0 auto; 
-            scroll-snap-align: center; 
-            margin-right: 10px;
-            max-height: 600px;
-        }
-
-        .carousel img {
-            width: 100%;
-            height: 450px; 
-            object-fit: cover; 
-            border-radius: 10px; 
-        }
-        
-       
-        .iphone-frame {
-            position: absolute;
-            width: 300px; 
-            height: 550px; 
-            background: url('iphonno.png') no-repeat center;
-            background-size: contain;
-            top: 30px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            z-index: 2; 
-            pointer-events: none;
-            margin-top: 1100px;
-        }
-
-        .iphone-interactive {
-            position: absolute; 
-            width: 100%;
+            justify-content: center;
+            gap: 10px;
+            margin-right: 200px;
+            }
+    
+            .images img {
+            width: 10%;
             height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 3; 
-            pointer-events: auto; 
-        }
-
-        .indicators {
-            position: absolute; 
-            bottom: 20px; 
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            z-index: 4;
-        }
-
-        .indicator {
-            width: 10px;
-            height: 10px;
-            margin: 0 5px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .indicator.active {
-            background-color: #00BFFF;
-        }
-
-        
-        .carousel-container::-webkit-scrollbar {
-            display: none;
-        }
-        .carousel-container {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            transition: all ease-in-out 0.2s;
+            }
+    
+            .images img:hover {
+            width: 25%;
+            }
 
         /* About Volt Styles */
         .about-volt {
@@ -391,12 +343,14 @@
 }
 
 .footer {
-    background-color: rgba(2, 10, 32, 0.8);
+    background-color: rgba(16, 16, 16);
     color: white;
-    padding: 20px 0;
+    padding: 10px;
     position: relative;
     bottom: 0;
     width: 100%;
+    height: 70px;
+    overflow-y: hidden;
 }
 
 .footer-container {
@@ -404,11 +358,10 @@
     justify-content: center; /* Center align the links */
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
 }
 
 .footer-links h4 {
-    margin-bottom: 10px;
     font-size: 1.2rem;
 }
 
@@ -422,18 +375,25 @@
 }
 
 .footer-links a {
-    color: #aceaff;
+    color: white;
     text-decoration: none;
     transition: color 0.3s;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: right;
+    font-size: 1.1rem;
 }
 
 .footer-links a:hover {
-    color: #fff;
+    color: navy;
 }
 
 .footer-bottom {
     text-align: center;
-    margin-top: 20px;
+}
+
+.footer-links p {
+    padding: 1px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -503,105 +463,6 @@
 }
 }
 
-@media screen and (max-width: 555px) {
-
-    /* Carousel Styles */
-    .carousel-container {
-        width: 200px;
-        height: 420px; 
-        overflow-x: scroll;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory; 
-        box-sizing: border-box;
-        background: rgba(0, 0, 0, 0.7); 
-        border-radius: 30px;
-        position: absolute;
-        z-index: 1; 
-        top: 90px;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 1140px;
-    }
-        
-
-    .carousel {
-        display: flex;
-        scroll-behavior: smooth; 
-    }
-
-    .carousel-item {
-        max-width: 250px; 
-        flex: 0 0 auto; 
-        scroll-snap-align: center; 
-        margin-right: 10px;
-        max-height: 600px;
-    }
-
-    .carousel img {
-        width: 100%;
-        height: 450px; 
-        object-fit: cover; 
-        border-radius: 10px; 
-    }
-        
-       
-    .iphone-frame {
-        position: absolute;
-        width: 300px; 
-        height: 550px; 
-        background: url('iphonno.png') no-repeat center;
-        background-size: contain;
-        top: 70px; 
-        left: 50%; 
-        transform: translateX(-50%); 
-        z-index: 2; 
-        pointer-events: none;
-        margin-top: 1100px;
-    }
-
-    .iphone-interactive {
-        position: absolute; 
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: 3; 
-        pointer-events: auto; 
-    }
-
-    .indicators {
-        position: absolute; 
-        bottom: 20px; 
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        z-index: 4;
-    }
-
-    .indicator {
-        width: 10px;
-        height: 10px;
-        margin: 0 5px;
-        background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .indicator.active {
-        background-color: #00BFFF;
-    }
-
-        
-    .carousel-container::-webkit-scrollbar {
-        display: none;
-    }
-    .carousel-container {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-}
-
     </style>
 </head>
 <body>
@@ -622,16 +483,16 @@
         </div>
         <nav class="menu">
             <a href="#chatbot">VoltBot</a>
-            <a href="#aboutvolt">About</a>
             <a href="#future1">Future</a>
+            <a href="#aboutvolt">About</a>
         </nav>
     </div>
 
 
     <div class="menu-items" id="menu-items">
         <a href="#chatbot">VoltBot</a>
-        <a href="#aboutvolt">About</a>
         <a href="#future1">Future</a>
+        <a href="#aboutvolt">About</a>
     </div>
     <br><br><br><br><br><br>
 
@@ -656,32 +517,16 @@
 
     <br><br><br><br><br><br>
     
-    <h2 id="future1">A Glimpse Through future</h2>
+    <h2 id="future1">A Glims Through future</h2>
 
-    <div class="carousel-container" id="future">
-        <div class="carousel">
-            <div class="carousel-item">
-                <img src="present.jpeg" alt="Slide 1">
-            </div>
-            <div class="carousel-item">
-                <img src="future2.avif" alt="Slide 2">
-            </div>
-            <div class="carousel-item">
-                <img src="later future.jpg" alt="Slide 3">
-            </div>
-        </div>
-        <div class="iphone-interactive"></div> 
-    </div>
+    <div class="images">
+        <img src="future2.avif">
+        <img src="later future.jpg">
+        <img src="present.jpeg">
+        <img src="future2.avif">
+      </div>
 
-    <div class="iphone-frame">
-        <div class="indicators">
-            <div class="indicator active" data-index="0"></div>
-            <div class="indicator" data-index="1"></div>
-            <div class="indicator" data-index="2"></div>
-        </div>
-    </div>
-
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
 
     <!-- About Volt -->
     <div class="about-volt" id="about">
@@ -698,11 +543,11 @@
         <div class="creators-container">
             <div class="creator">
                 <h3>Samir Rami Alqedra</h3>
-                <p>Samir, a 15 year old high school student with a passion for technology, built and designed the Volt capsule and programmed this website. He has been involved in various engineering projects, including the infamous Project Nano</p>
+                <p>Samir, a 16-year-old high school student with a passion for technology, built and designed the Volt capsule and programmed this website. He has been involved in various engineering projects, including the infamous Project Nano</p>
             </div>
             <div class="creator">
                 <h3>Nabil Amjed Joudeh</h3>
-                <p>Nabil Amjed, at just 15 years old, is a highly skilled programmer with a focus on software development. He was the one who programmed Volt's assistant and was a pivotal role in the success of the Volt project and was key to Project Nano’s achievement</p>
+                <p>Nabil Amjed, at just 16 years old, is a highly skilled programmer with a focus on software development. He was the one who programmed Volt's assistant and was a pivotal role in the success of the Volt project and was key to Project Nano’s achievement</p>
             </div>
             <div class="creator">
                 <h3>Ahmed Ammar Salman</h3>
@@ -715,12 +560,10 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#aboutus1">About Us</a></li>
-                    <li><a href="#future1">future</a></li>
-                    <li><a href="#chatbot">chatbot</a></li>
-                </ul>
+                    <a href="#aboutus1">About Us</a>
+                    <a href="#future1">future</a>
+                    <a href="#chatbot">chatbot</a>
+                    <a href="index1.html">Become a member</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -741,6 +584,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+
 
 
         const carousel = document.querySelector('.carousel-container');
@@ -912,6 +756,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         // Add event listener to hamburger menu
         document.getElementById('hamburger').addEventListener('click', () => {
             document.getElementById('menu-items').classList.toggle('active');
+        });
+
+        document.getElementById('userIcon').addEventListener('click', function() {
+            window.location.href = 'index1.html'; // Redirect to the login/register page
         });
 
     </script>
