@@ -426,31 +426,7 @@
         text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
         letter-spacing: 1.5px;
         margin: 0;
-    }
-
-        .images {
-        margin: 100px 0 0 200px;
-        width: 70%;
-        height: 450px;
-        flex-direction: column;
-        justify-content: center;
-        gap: 10px;
-        margin-right: 200px;
-        }
-
-        .images img {
-        width: 100%;
-        height: 20%;
-        object-fit: cover;
-        border-radius: 10px;
-        border: 2px solid rgba(255, 255, 255, 0.6);
-        transition: all ease-in-out 0.2s;
-        }
-
-        .images img:hover {
-        height: 100%;
-        width: 100%;
-        }
+}
 }
 
 
@@ -485,11 +461,6 @@
         letter-spacing: 1.5px;
         margin: 0;
 }
-}
-
-@media screen and (max-width: 555px) {
-
-
 }
 
     </style>
@@ -555,7 +526,7 @@
         <img src="future2.avif">
       </div>
 
-    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
 
     <!-- About Volt -->
     <div class="about-volt" id="about">
@@ -603,167 +574,98 @@
 
     <script>
 
-        // Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+ // Smooth scrolling for navigation links
+ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
+        
+        const targetElement = document.querySelector(this.getAttribute('href'));
+        const offset = 100; // Adjust this value as needed
+        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - offset;
 
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
+        window.scrollTo({
+            top: offsetPosition,
             behavior: 'smooth'
         });
     });
 });
 
+// Chatbot functionality
+const sendBtn = document.getElementById('send-btn');
+const chatBox = document.getElementById('chat-box');
+const commandSelect = document.getElementById('command-select');
 
+sendBtn.addEventListener('click', () => {
+    const userCommand = commandSelect.value;
 
-        const carousel = document.querySelector('.carousel-container');
-        const items = document.querySelectorAll('.carousel-item');
-        const indicators = document.querySelectorAll('.indicator');
-        const interactiveOverlay = document.querySelector('.iphone-interactive');
-        let currentIndex = 0;
+    // Display the user's message
+    const userMessage = document.createElement('div');
+    userMessage.classList.add('message', 'user');
+    userMessage.textContent = userCommand;
+    chatBox.appendChild(userMessage);
 
-        function updateIndicators() {
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
-        }
+    // Simulate a response based on the command
+    let botResponse = '';
 
-        function scrollToIndex(index) {
-            const itemWidth = items[0].offsetWidth + 10;
-            carousel.scrollTo({
-                left: itemWidth * index,
-                behavior: 'smooth'
-            });
-            currentIndex = index;
-            updateIndicators();
-        }
-
-        indicators.forEach((indicator) => {
-            indicator.addEventListener('click', (e) => {
-                const index = parseInt(e.target.getAttribute('data-index'));
-                scrollToIndex(index);
-            });
-        });
-
-        carousel.addEventListener('scroll', () => {
-            const itemWidth = items[0].offsetWidth + 10;
-            const newIndex = Math.round(carousel.scrollLeft / itemWidth);
-            if (newIndex !== currentIndex) {
-                currentIndex = newIndex;
-                updateIndicators();
-            }
-        });
-
-        interactiveOverlay.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            const startX = e.touches[0].clientX;
-            let scrollLeft = carousel.scrollLeft;
-
-            const touchMoveHandler = (e) => {
-                const x = e.touches[0].clientX;
-                const walk = (x - startX) * 2; 
-                carousel.scrollLeft = scrollLeft - walk;
-            };
-
-            const touchEndHandler = () => {
-                interactiveOverlay.removeEventListener('touchmove', touchMoveHandler);
-                interactiveOverlay.removeEventListener('touchend', touchEndHandler);
-            };
-
-            interactiveOverlay.addEventListener('touchmove', touchMoveHandler);
-            interactiveOverlay.addEventListener('touchend', touchEndHandler);
-        });
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-    
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-    
-            // Add event listener to send button
-document.getElementById('send-btn').addEventListener('click', sendMessage);
-
-async function sendMessage() {
-    const chatInput = document.getElementById('command-select');
-    const messageText = chatInput.value;
-
-    if (messageText) {
-        const chatBox = document.getElementById('chat-box'); // Ensure correct ID
-
-        const userMessage = document.createElement('div');
-        userMessage.classList.add('message', 'user');
-        userMessage.textContent = messageText;
-        chatBox.appendChild(userMessage);
-
-        const typingIndicator = document.createElement('div');
-        typingIndicator.classList.add('typing-indicator');
-        typingIndicator.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-        chatBox.appendChild(typingIndicator);
-
-        chatBox.scrollTop = chatBox.scrollHeight;
-
-        await new Promise(resolve => setTimeout(resolve, 1000));
-
-        chatBox.removeChild(typingIndicator);
-
-        const botMessage = document.createElement('div');
-        botMessage.classList.add('message', 'bot');
-        botMessage.textContent = getBotResponse(messageText);
-
-        chatBox.appendChild(botMessage);
-        chatBox.scrollTop = chatBox.scrollHeight;
-
-        speak(botMessage.textContent);
-
-        chatInput.value = ''; // Clear input field after message is sent
-    }
-}
-
-function getBotResponse(message) {
-    switch (message.toLowerCase()) {
+    switch (userCommand) {
         case 'what is your name':
-            return "I'm Volt, here to help you!";
+            botResponse = "I am VoltBot, your futuristic assistant.";
+            break;
         case 'what are you':
-            return "I'm an A.I chatbot ready to assist with your questions!";
+            botResponse = "I am an AI-powered chatbot designed to assist with information about Volt.";
+            break;
         case 'who came up with the idea':
-            return "It all started with Samir and Nabil.";
+            botResponse = "The idea for Volt was initiated by Samir Rami Alqedra.";
+            break;
         case 'who helped develop the idea':
-            return "Samir and Nabil brought Ahmed to help bring the idea to life.";
+            botResponse = "The Volt project was developed by Samir Rami Alqedra, Nabil Amjed Joudeh, and Ahmed Ammar Salman.";
+            break;
         case 'who are the creators of volt':
-            return "Volt was created by a group called LEVEOCY.";
-        case "whats volt":
-            return "Volt is a fast, safe, and affordable new transportation system.";
+            botResponse = "Volt was created by Samir Rami Alqedra, Nabil Amjed Joudeh, and Ahmed Ammar Salman.";
+            break;
+        case 'whats volt':
+            botResponse = "Volt is a futuristic maglev capsule designed to redefine travel using advanced magnetic levitation technology.";
+            break;
         case 'how does volt work':
-            return "It's a bit too complex to explain here. Check out the Volt section for more details!";
+            botResponse = "Volt operates using magnetic levitation technology, allowing it to hover above tracks and move at incredible speeds autonomously.";
+            break;
         case 'date':
-            return new Date().toLocaleDateString();
+            botResponse = `Today's date is ${new Date().toLocaleDateString()}.`;
+            break;
         case 'time':
-            return new Date().toLocaleTimeString();
+            botResponse = `The current time is ${new Date().toLocaleTimeString()}.`;
+            break;
         default:
-            return "Sorry, I didn't catch that.";
+            botResponse = "I'm not sure how to answer that.";
     }
-}
+
+    // Display the bot's response
+    const botMessage = document.createElement('div');
+    botMessage.classList.add('message', 'bot');
+    botMessage.textContent = botResponse;
+    chatBox.appendChild(botMessage);
+
+    // Scroll chatbox to the bottom
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // Speak the bot's response
+    speak(botResponse);
+});
 
 function speak(text) {
     const speech = new SpeechSynthesisUtterance(text);
     const voices = window.speechSynthesis.getVoices();
-    
+
     const femaleBritishVoice = voices.find(voice => voice.lang === 'en-GB' && voice.name.includes('Female'));
-    
+
     if (femaleBritishVoice) {
         speech.voice = femaleBritishVoice;
     }
 
     speech.lang = 'en-GB';
     speech.volume = 1;
-    speech.rate = 1.0;
+    speech.rate = 1.15;
     speech.pitch = 1.1;
     speech.onend = () => {
         console.log("Speech has finished.");
@@ -776,23 +678,6 @@ window.speechSynthesis.onvoiceschanged = () => {
     // You can use this event to reload the voices when they change if needed
 };
 
-
-    
-            // Add event listener to hamburger menu
-            document.getElementById('hamburger').addEventListener('click', () => {
-                document.getElementById('menu-items').classList.toggle('active');
-            });
-        });
-
-
-        // Add event listener to hamburger menu
-        document.getElementById('hamburger').addEventListener('click', () => {
-            document.getElementById('menu-items').classList.toggle('active');
-        });
-
-        document.getElementById('userIcon').addEventListener('click', function() {
-            window.location.href = 'index1.html'; // Redirect to the login/register page
-        });
 
     </script>
 </body>
