@@ -688,92 +688,94 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
     
             // Add event listener to send button
-            document.getElementById('send-btn').addEventListener('click', sendMessage);
+document.getElementById('send-btn').addEventListener('click', sendMessage);
+
+async function sendMessage() {
+    const chatInput = document.getElementById('command-select');
+    const messageText = chatInput.value;
+
+    if (messageText) {
+        const chatBox = document.getElementById('chat-box'); // Ensure correct ID
+
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('message', 'user');
+        userMessage.textContent = messageText;
+        chatBox.appendChild(userMessage);
+
+        const typingIndicator = document.createElement('div');
+        typingIndicator.classList.add('typing-indicator');
+        typingIndicator.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+        chatBox.appendChild(typingIndicator);
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        chatBox.removeChild(typingIndicator);
+
+        const botMessage = document.createElement('div');
+        botMessage.classList.add('message', 'bot');
+        botMessage.textContent = getBotResponse(messageText);
+
+        chatBox.appendChild(botMessage);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        speak(botMessage.textContent);
+
+        chatInput.value = ''; // Clear input field after message is sent
+    }
+}
+
+function getBotResponse(message) {
+    switch (message.toLowerCase()) {
+        case 'what is your name':
+            return "I'm Volt, here to help you!";
+        case 'what are you':
+            return "I'm an A.I chatbot ready to assist with your questions!";
+        case 'who came up with the idea':
+            return "It all started with Samir and Nabil.";
+        case 'who helped develop the idea':
+            return "Samir and Nabil brought Ahmed to help bring the idea to life.";
+        case 'who are the creators of volt':
+            return "Volt was created by a group called LEVEOCY.";
+        case "whats volt":
+            return "Volt is a fast, safe, and affordable new transportation system.";
+        case 'how does volt work':
+            return "It's a bit too complex to explain here. Check out the Volt section for more details!";
+        case 'date':
+            return new Date().toLocaleDateString();
+        case 'time':
+            return new Date().toLocaleTimeString();
+        default:
+            return "Sorry, I didn't catch that.";
+    }
+}
+
+function speak(text) {
+    const speech = new SpeechSynthesisUtterance(text);
+    const voices = window.speechSynthesis.getVoices();
     
-            async function sendMessage() {
-                const chatInput = document.getElementById('command-select');
-                const messageText = chatInput.value;
+    const femaleBritishVoice = voices.find(voice => voice.lang === 'en-GB' && voice.name.includes('Female'));
     
-                if (messageText) {
-                    const chatBox = document.getElementById('chat-box'); // Use correct ID
-    
-                    const userMessage = document.createElement('div');
-                    userMessage.classList.add('message', 'user');
-                    userMessage.textContent = messageText;
-    
-                    chatBox.appendChild(userMessage);
-    
-                    const typingIndicator = document.createElement('div');
-                    typingIndicator.classList.add('typing-indicator');
-                    typingIndicator.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-                    chatBox.appendChild(typingIndicator);
-    
-                    chatBox.scrollTop = chatBox.scrollHeight;
-    
-                    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-                    chatBox.removeChild(typingIndicator);
-    
-                    const botMessage = document.createElement('div');
-                    botMessage.classList.add('message', 'bot');
-                    botMessage.textContent = getBotResponse(messageText);
-    
-                    chatBox.appendChild(botMessage);
-                    chatBox.scrollTop = chatBox.scrollHeight;
-    
-                    speak(botMessage.textContent);
-                }
-            }
-    
-            function getBotResponse(message) {
-                switch (message.toLowerCase()) {
-                    case 'what is your name':
-                        return "I'm Volt, here to help you!";
-                    case 'what are you':
-                        return "I'm an A.I chatbot ready to assist with your questions!";
-                    case 'who came up with the idea':
-                        return "It all started with Samir and Nabil.";
-                    case 'who helped develop the idea':
-                        return "Samir and Nabil brought Ahmed to help bring the idea to life.";
-                    case 'who are the creators of volt':
-                        return "Volt was created by a group called LEVEOCY.";
-                    case "whats volt":
-                        return "Volt is a fast, safe, and affordable new transportation system.";
-                    case 'how does volt work':
-                        return "It's a bit too complex to explain here. Check out the Volt section for more details!";
-                    case 'date':
-                        return new Date().toLocaleDateString();
-                    case 'time':
-                        return new Date().toLocaleTimeString();
-                    default:
-                        return "Sorry, I didn't catch that.";
-                }
-            }
-    
-            function speak(text) {
-                const speech = new SpeechSynthesisUtterance(text);
-                const voices = window.speechSynthesis.getVoices();
-    
-                const femaleBritishVoice = voices.find(voice => voice.lang === 'en-GB' && voice.name.includes('Female'));
-    
-                if (femaleBritishVoice) {
-                    speech.voice = femaleBritishVoice;
-                }
-    
-                speech.lang = 'en-GB';
-                speech.volume = 1;
-                speech.rate = 1.0;
-                speech.pitch = 1.1;
-                speech.onend = () => {
-                    console.log("Speech has finished.");
-                };
-    
-                window.speechSynthesis.speak(speech);
-            }
-    
-            window.speechSynthesis.onvoiceschanged = () => {
-                
-            };
+    if (femaleBritishVoice) {
+        speech.voice = femaleBritishVoice;
+    }
+
+    speech.lang = 'en-GB';
+    speech.volume = 1;
+    speech.rate = 1.0;
+    speech.pitch = 1.1;
+    speech.onend = () => {
+        console.log("Speech has finished.");
+    };
+
+    window.speechSynthesis.speak(speech);
+}
+
+window.speechSynthesis.onvoiceschanged = () => {
+    // You can use this event to reload the voices when they change if needed
+};
+
     
             // Add event listener to hamburger menu
             document.getElementById('hamburger').addEventListener('click', () => {
