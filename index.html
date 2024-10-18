@@ -15,17 +15,20 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            user-select: none; 
         }
 
         /* Icon inside the circle (using FontAwesome for example, or custom SVG) */
         .header .user-icon i {
             font-size: 20px;
             color: #333;
+            user-select: none;
         }
 
         /* Optional: hover effect */
         .header .user-icon:hover {
             background-color: #555;
+            user-select: none;
         }
         
         /* Global Styles */
@@ -42,6 +45,7 @@
             color: white;
             overflow-x: hidden;
             overflow-y: scroll;
+            user-select: none;
         }
 
         /* Header Styles */
@@ -57,17 +61,20 @@
             right: 0;
             z-index: 10;
             height: 15px;
+            user-select: none;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
             color: white;
+            user-select: none;
         }
 
         .menu {
             display: flex;
             flex-wrap: wrap;
+            user-select: none;
         }
 
         .menu a {
@@ -76,6 +83,7 @@
             text-decoration: none;
             margin-left: 20px;
             transition: color 0.3s;
+            user-select: none;
         }
 
         .menu a:hover {
@@ -87,6 +95,7 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            user-select: none;
         }
 
         .hamburger div {
@@ -95,6 +104,7 @@
             background-color: white;
             margin: 3px 0;
             transition: 0.3s;
+            user-select: none;
         }
 
         /* Menu Items Styles */
@@ -109,6 +119,7 @@
             z-index: 10;
             margin-left: 200px;
             border-radius: 5px;
+            user-select: none;
         }
 
         .menu-items.active {
@@ -121,6 +132,7 @@
             text-decoration: none;
             padding: 7px;
             border-radius: 5px;
+            user-select: none;
         }
 
         .menu-items a:hover {
@@ -136,6 +148,7 @@
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             overflow: hidden;
+            user-select: none;
         }
 
         .chat-box {
@@ -146,12 +159,14 @@
             background: rgba(255, 255, 255, 0.2);
             display: flex;
             flex-direction: column;
+            user-select: none;
         }
 
         .input-area {
             display: flex;
             padding: 10px;
             background: rgba(0, 0, 0, 0.5);
+            user-select: none;
         }
 
         #command-select {
@@ -162,6 +177,7 @@
             outline: none;
             background-color: rgba(0, 0, 0, 0.5);
             color: #fff;
+            user-select: none;
         }
 
         #send-btn {
@@ -173,6 +189,7 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            user-select: none;
         }
 
         #send-btn:hover {
@@ -189,18 +206,21 @@
             width: fit-content;
             max-width: 75%;
             word-wrap: break-word;
+            user-select: none;
         }
 
         .message.user {
             background-color: rgba(255, 255, 255, 0.35);
             margin-left: auto;
             text-align: right;
+            user-select: none;
         }
 
         .message.bot {
             background-color: rgba(2, 22, 114, 0.35);
             margin-right: auto;
             text-align: left;
+            user-select: none;
         }
 
         /* Carousel Styles */
@@ -212,6 +232,7 @@
             justify-content: center;
             gap: 10px;
             margin-right: 200px;
+            user-select: none;
             }
     
             .images img {
@@ -237,6 +258,7 @@
             font-weight: 700;
             text-shadow:  5px 5px 8px rgba(0, 0, 0, 0.4);
             font-size: 3rem;
+            user-select: none;
         }
 
         .about-volt h2 {
@@ -248,6 +270,7 @@
             letter-spacing: 1.5px;
             text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.5);
             text-align: center;
+            user-select: none;
         }
 
         .about-volt p {
@@ -258,12 +281,14 @@
             color: #f1f1f1;
             text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.6);
             padding: 0 15px;
+            user-select: none;
         }
 
         /* About Creators Styles */
         .about-creators {
             margin-top: 80px;
             padding: 0 15px;
+            user-select: none;
         }
 
         .creators-container {
@@ -272,6 +297,7 @@
             gap: 50px;
             margin-top: 30px;
             flex-wrap: wrap;
+            user-select: none;
         }
 
         .creator {
@@ -281,6 +307,7 @@
             width: 280px;
             transition: transform 0.3s ease-in-out;
             box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.7);
+            user-select: none;
         }
 
         .creator:hover {
@@ -292,22 +319,26 @@
             color: #fff;
             margin-bottom: 15px;
             letter-spacing: 1px;
+            user-select: none;
         }
 
         .creator p {
             font-size: 1rem;
             color: #ddd;
             text-shadow: none;
+            user-select: none;
         }
 
         .about-creators h2 {
             text-align: center;
             font-size: 2rem;
+            user-select: none;
         }
 
         .future2 h2{
             color: black;
             background-color: #fff;
+            user-select: none;
         }
 
         .member a {
@@ -317,6 +348,7 @@
             padding: 10px 20px;
             font-size: 1.5rem;
             text-decoration: none;
+            user-select: none;
         }
 
         .member a:hover {
@@ -336,6 +368,7 @@
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
     letter-spacing: 1.5px;
     margin: 0;
+    user-select: none;
 }
 
 /* Styling for Future Text */
@@ -345,6 +378,7 @@
     color: #fff; /* Bright blue to stand out */
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
     margin: 10px 0; /* Space between texts */
+    user-select: none;
 }
 
 /* Styling for Volt Text */
@@ -355,6 +389,7 @@
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
     letter-spacing: 1.5px;
     margin: 0;
+    user-select: none;
 }
 
 .footer {
@@ -366,6 +401,7 @@
     width: 100%;
     height: 70px;
     overflow-y: hidden;
+    user-select: none;
 }
 
 .footer-container {
@@ -374,6 +410,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 10px;
+    user-select: none;
 }
 
 .footer-links h4 {
@@ -397,6 +434,7 @@
     padding-right: 20px;
     text-align: right;
     font-size: 1.1rem;
+    user-select: none;
 }
 
 .footer-links a:hover {
@@ -610,8 +648,8 @@
         <div class="footer-container">
             <div class="footer-links">
                     <a href="#aboutus1">About Us</a>
-                    <a href="#future1">future</a>
-                    <a href="#chatbot">chatbot</a>
+                    <a href="#future1">Future</a>
+                    <a href="#chatbot">Chatbot</a>
             </div>
         </div>
         <div class="footer-bottom">
