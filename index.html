@@ -310,6 +310,21 @@
             background-color: #fff;
         }
 
+        .member a {
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .member a:hover {
+            background-color: white;
+            color: black;
+            padding: 11px 21px;
+        }
+
 /* Font Import */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;700&display=swap');
 
@@ -555,7 +570,12 @@
         <img src="future2.avif">
       </div>
 
-    <br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+
+    <dev class="member" id="member"><a href="index1.html">Become a member</a></dev>
+
+    <br><br>
+    <br><br>
 
     <!-- About Volt -->
     <div class="about-volt" id="about">
@@ -592,7 +612,6 @@
                     <a href="#aboutus1">About Us</a>
                     <a href="#future1">future</a>
                     <a href="#chatbot">chatbot</a>
-                    <a href="index1.html">Become a member</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -603,22 +622,21 @@
 
     <script>
 
- // Smooth scrolling for navigation links
- document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                const offset = 100; // Adjust this value as needed
+                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - offset;
         
-        const targetElement = document.querySelector(this.getAttribute('href'));
-        const offset = 100; // Adjust this value as needed
-        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = elementPosition - offset;
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
         });
-    });
-});
 
 // Chatbot functionality
 const sendBtn = document.getElementById('send-btn');
@@ -639,25 +657,25 @@ sendBtn.addEventListener('click', () => {
 
     switch (userCommand) {
         case 'what is your name':
-            botResponse = "I am VoltBot, here to help.";
+            botResponse = "I am VoltBot, your futuristic assistant.";
             break;
         case 'what are you':
-            botResponse = "I am an A.I chatbot designed to assist with information about Volt.";
+            botResponse = "I am an AI-powered chatbot designed to assist with information about Volt.";
             break;
         case 'who came up with the idea':
-            botResponse = "The idea for Volt was initiated by Samir Rami and his peer Nabil Amjed.";
+            botResponse = "The idea for Volt was initiated by Samir Rami Alqedra.";
             break;
         case 'who helped develop the idea':
-            botResponse = "The Volt project was developed by Samir Rami, Nabil Amjed, and Ahmed Ammar.";
+            botResponse = "The Volt project was developed by Samir Rami Alqedra, Nabil Amjed Joudeh, and Ahmed Ammar Salman.";
             break;
         case 'who are the creators of volt':
-            botResponse = "Volt was created by Samir Rami, Nabil Amjed, and Ahmed Ammar.";
+            botResponse = "Volt was created by Samir Rami Alqedra, Nabil Amjed Joudeh, and Ahmed Ammar Salman.";
             break;
         case 'whats volt':
             botResponse = "Volt is a futuristic maglev capsule designed to redefine travel using advanced magnetic levitation technology.";
             break;
         case 'how does volt work':
-            botResponse = "It's a little bit too complex to explain it here, visit the about section you will sure find your answer.";
+            botResponse = "Volt operates using magnetic levitation technology, allowing it to hover above tracks and move at incredible speeds autonomously.";
             break;
         case 'date':
             botResponse = `Today's date is ${new Date().toLocaleDateString()}.`;
