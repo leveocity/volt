@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Volt</title>
+    <style>
+        body {
+            background-color: rgb(5, 5, 53);
+            background-size: cover;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgb(13, 13, 13);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            height: 15px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: navy;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Menu Items Styles */
+        .menu-items {
+            display: none;
+            flex-direction: column;
+            text-decoration: none;
+            width: 50%;
+            position: absolute;
+            top: 60px;
+            background-color: rgba(2, 10, 32, 0.8);
+            z-index: 10;
+            margin-left: 200px;
+            border-radius: 5px;
+        }
+
+        .menu-items.active {
+            display: flex;
+        }
+
+        .menu-items a {
+            margin: 10px 0;
+            color: #fff;
+            text-decoration: none;
+            padding: 7px;
+            border-radius: 5px;
+        }
+
+        .menu-items a:hover {
+            background-color: grey;
+        }
+
+        /* Weather and Time Container */
+        .container {
+            margin-top: 150px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .container input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .container button {
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .container button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        @media screen and (max-width: 1024px){
+            body {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                margin-top: 400px;
+                width: 500px;
+                display: flex;
+                flex-direction: column;
+                height: 465px;
+            }
+    
+            .container h2 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+    
+            .container p {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+    
+            .container input {
+                margin-bottom: 15px;
+                width: 100%;
+                box-sizing: border-box;
+                font-size: 1.8rem;
+            }
+    
+            .container button {
+                border: none;
+                cursor: pointer;
+                width: 100%;
+                font-size: 1.8rem;
+            }
+        }
+
+        
+        @media screen and (max-width: 414px) {
+
+            body {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                margin-top: 400px;
+                width: 500px;
+                display: flex;
+                flex-direction: column;
+                height: 465px;
+            }
+    
+            .container h2 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+    
+            .container p {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+    
+            .container input {
+                margin-bottom: 15px;
+                width: 100%;
+                box-sizing: border-box;
+                font-size: 1.8rem;
+            }
+    
+            .container button {
+                border: none;
+                cursor: pointer;
+                width: 100%;
+                font-size: 1.8rem;
+            }
+           
+        }
+        
+        
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">Volt</div>
+        <nav class="menu">
+            <a href="test.html">Back home</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h2>Welcome!</h2>
+        <p id="time">Loading time...</p>
+        <p id="weather">Loading weather...</p>
+        <p>Where would you like to go?</p>
+        <input type="text" id="destination" placeholder="Enter your destination">
+        <button id="go-button">Go</button>
+    </div>
+
+    <br><br><br><br><br><br><br>
+
+    <script>
+        // Update time every second
+        setInterval(() => {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('time').textContent = Current time: ${timeString};
+        }, 1000);
+
+        // Fetch weather based on user's location
+        function fetchWeather(lat, lon) {
+            const apiKey = '44757a80fee186a77fceb3760fedd477'; // Replace with your OpenWeatherMap API key
+            const url = https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey};
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Weather data not available');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const weatherDescription = data.weather[0].description;
+                    const temperature = data.main.temp;
+                    document.getElementById('weather').textContent = Weather: ${temperature}°C and ${weatherDescription};
+                })
+                .catch(error => {
+                    console.error(error);
+                    document.getElementById('weather').textContent = 'Weather data not available';
+                });
+        }
+
+        // Get user's location and fetch weather
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const { latitude, longitude } = position.coords;
+                    fetchWeather(latitude, longitude);
+                }, () => {
+                    document.getElementById('weather').textContent = 'Unable to retrieve your location';
+                });
+            } else {
+                document.getElementById('weather').textContent = 'Geolocation is not supported by this browser';
+            }
+        }
+
+        // Call getLocation to fetch weather
+        getLocation();
+
+        // Handle button click for destination
+        document.getElementById('go-button').addEventListener('click', function () {
+            const destination = document.getElementById('destination').value;
+
+            if (destination) {
+                const mapsUrl = https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(destination)};
+                window.open(mapsUrl, '_blank');
+            } else {
+                alert('Please enter a destination');
+            }
+        });
+    </script>
+</body>
+
+</html>
