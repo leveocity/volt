@@ -266,25 +266,20 @@
         setInterval(() => {
             const now = new Date();
             const timeString = now.toLocaleTimeString();
-            document.getElementById('time').textContent = Current time: ${timeString};
+            document.getElementById('time').textContent = `Current time: ${timeString}`;
         }, 1000);
 
         // Fetch weather based on user's location
         function fetchWeather(lat, lon) {
             const apiKey = '44757a80fee186a77fceb3760fedd477'; // Replace with your OpenWeatherMap API key
-            const url = https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey};
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
 
             fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Weather data not available');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
                     const weatherDescription = data.weather[0].description;
                     const temperature = data.main.temp;
-                    document.getElementById('weather').textContent = Weather: ${temperature}°C and ${weatherDescription};
+                    document.getElementById('weather').textContent = `Weather: ${temperature}°C and ${weatherDescription}`;
                 })
                 .catch(error => {
                     console.error(error);
@@ -314,7 +309,7 @@
             const destination = document.getElementById('destination').value;
 
             if (destination) {
-                const mapsUrl = https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(destination)};
+                const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(destination)}`;
                 window.open(mapsUrl, '_blank');
             } else {
                 alert('Please enter a destination');
