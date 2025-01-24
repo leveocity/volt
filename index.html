@@ -167,8 +167,8 @@
     function speak(message) {
       const utterance = new SpeechSynthesisUtterance(message);
       utterance.voice = getFemaleVoice();
-      utterance.lang = "en-US";
-      utterance.pitch = 1.0; // Change the pitch
+      utterance.lang = "en-UK";
+      utterance.pitch = 1.2; // Change the pitch
       utterance.rate = 0.95; // Change the rate
       utterance.onstart = () => container.classList.add("speaking");
       utterance.onend = () => container.classList.remove("speaking");
