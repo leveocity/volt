@@ -161,13 +161,13 @@
 
     function getFemaleVoice() {
       const voices = synth.getVoices();
-      return voices.find(voice => voice.name.includes("Female") || voice.name.includes("Karen")) || voices[0];
+      return voices.find(voice => voice.name.includes("Female") || voice.name.includes("Samantha")) || voices[0];
     }
 
     function speak(message) {
       const utterance = new SpeechSynthesisUtterance(message);
       utterance.voice = getFemaleVoice();
-      utterance.lang = "en-UK";
+      utterance.lang = "en-US";
       utterance.pitch = 1.2; // Change the pitch
       utterance.rate = 0.95; // Change the rate
       utterance.onstart = () => container.classList.add("speaking");
